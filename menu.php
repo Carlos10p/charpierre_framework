@@ -13,8 +13,8 @@
 
 	if($num>0){
 		
-		while($row = $conexion->bd_dameRegistro($resultado)){
-			
+		while($row = $conexion->bd_dameRegistro($resultado))
+		{
 			$datos = array(
 							'nombre'=>$row['nombre'],
 							'ruta'=>$row['ruta'],
@@ -23,7 +23,6 @@
 			array_push($res,$datos);
 		}
 	}
-	
 ?>
 <!-- [ navigation menu ] start -->
 <nav class="pcoded-navbar menu-light ">
@@ -45,14 +44,15 @@
 				</div>
 				<ul class="nav pcoded-inner-navbar ">
 					<li class="nav-item pcoded-menu-caption">
-					    <label>Navigation</label>
+						<label>Navigation</label>
 					</li>
 					<?php
 						for($i=0;$i<count($res);$i++){
 							echo '
-								<li class="nav-item">
-									<a href="?page='. $res[$i]['ruta'].'" class="nav-link "><span class="pcoded-micon"><i class="feather icon-'. $res[$i]['Icono'].'"></i></span><span class="pcoded-mtext">'. $res[$i]['nombre'].'</span></a>
-								</li>';	
+									<li class="nav-item">
+										<a href="?page='. $res[$i]['ruta'].'" class="nav-link "><span class="pcoded-micon"><i class="feather icon-'. $res[$i]['Icono'].'"></i></span><span class="pcoded-mtext">'. $res[$i]['nombre'].'</span></a>
+									</li>
+								';	
 						}
 					?>
 				</ul>

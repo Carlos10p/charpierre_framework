@@ -3,27 +3,26 @@
     require_once '.'.DIRECTORY_SEPARATOR.'motor'.DIRECTORY_SEPARATOR.'conexion.php';
     require_once '.'.DIRECTORY_SEPARATOR.'sesions.php';
 
+    $sesiones = new sesions();
+
     if(isset($_SESSION['user'])){
+        $sesiones->sesiones('inicia',null);
+        if(isset($_GET['request'])){
+            $request = $_GET['request'];
+            switch($request){
+                case 'logOff':
+                    include_once '.'.DIRECTORY_SEPARATOR.'viewLogin.php';
 
-        $request = $_GET['request'];
-        switch($request){
-            case 'logOff':
-                include_once '.'.DIRECTORY_SEPARATOR.'viewLogin.php';
-
-                $sesiones = new sesions();
-                $sesiones->sesiones('destruye',$datos);
-
-                $login = new viewLogin();
-                echo $login->cargarVista();
-
-                break;
-            default:
-                include_once '.'.DIRECTORY_SEPARATOR.'viewAdmin.php';
-                break;
-            
+                    $sesiones->sesiones('destruye',$datos);
+                    break;
+                default:
+                    include_once '.'.DIRECTORY_SEPARATOR.'viewAdmin.php';
+                    break;
+            }
         }
-        
-        
+        else{
+            include_once '.'.DIRECTORY_SEPARATOR.'viewAdmin.php';
+        }
     }
     else{
         if(isset($_POST['usuario']) && isset($_POST['contrasena'])){
