@@ -3,25 +3,31 @@
     require_once '.'.DIRECTORY_SEPARATOR.'motor'.DIRECTORY_SEPARATOR.'conexion.php';
     require_once '.'.DIRECTORY_SEPARATOR.'sesions.php';
 
+    include_once '.'.DIRECTORY_SEPARATOR.'viewLogin.php';
+    include_once '.'.DIRECTORY_SEPARATOR.'viewAdmin.php';
+
     $sesiones = new sesions();
 
+    $sesiones->sesiones('inicia',null);
+
     if(isset($_SESSION['user'])){
-        $sesiones->sesiones('inicia',null);
         if(isset($_GET['request'])){
             $request = $_GET['request'];
             switch($request){
                 case 'logOff':
-                    include_once '.'.DIRECTORY_SEPARATOR.'viewLogin.php';
-
-                    $sesiones->sesiones('destruye',$datos);
+                    $sesiones->sesiones('destruye',null);
+                    $login = new viewLogin();
+                    echo $login->cargarVista(FALSE);
                     break;
                 default:
-                    include_once '.'.DIRECTORY_SEPARATOR.'viewAdmin.php';
+                    $admin = new viewAdmin();
+                    echo $admin->cargaVista();
                     break;
             }
         }
         else{
-            include_once '.'.DIRECTORY_SEPARATOR.'viewAdmin.php';
+            $admin = new viewAdmin();
+            echo $admin->cargaVista();
         }
     }
     else{
@@ -52,23 +58,21 @@
                 }
                 $sesiones = new sesions();
                 $sesiones->sesiones('crear',$datos);
-                include_once '.'.DIRECTORY_SEPARATOR.'viewAdmin.php';
+
+                $admin = new viewAdmin();
+                echo $admin->cargaVista();
                 
             }
             else{
-                include_once '.'.DIRECTORY_SEPARATOR.'viewLogin.php';
-
                 $login = new viewLogin();
                 echo $login->cargarVista(TRUE);
             }
             
         }
         else{
-            include_once '.'.DIRECTORY_SEPARATOR.'viewLogin.php';
 
-            $login = new viewLogin();
+            $login = new viewLogin(TRUE);
             echo $login->cargarVista();
-            
         }
         
     }

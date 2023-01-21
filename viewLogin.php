@@ -29,7 +29,7 @@ class viewLogin{
 			<!-- vendor css -->
 			<link rel="stylesheet" href="assets/css/style.css">
 		</head>
-		
+		<body>
 		<!-- [ auth-signin ] start -->
 		<div class="auth-wrapper">
 			<div class="auth-content">

@@ -1,6 +1,11 @@
+<?php
+	class header{
+		function mostrar(){
+			$cont = '';
 
-<!-- [ Header ] start -->
-<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+			$cont .= '
+			<!-- [ Header ] start -->
+			<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
 				<div class="m-header">
 					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
 					<a href="#!" class="b-brand">
@@ -22,18 +27,21 @@
 								<div class="dropdown-menu dropdown-menu-right profile-notification">
 									<div class="pro-head">
 										<img src="assets/images/user/avatar.png" class="img-radius" alt="User-Profile-Image">
-										<span><?php echo $_SESSION['user']['nombre']; ?></span>
+										<span>'.$_SESSION['user']['nombre'].'</span>
 									</div>
 									<ul class="pro-body">
 										<li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Mi Cuenta</a></li>
-										<li><a href="?request='logOff'" class="dropdown-item"><i class="feather icon-log-out"></i> Salir</a></li>
+										<li><a href="?request=logOff" class="dropdown-item"><i class="feather icon-log-out"></i> Salir</a></li>
 									</ul>
 								</div>
 							</div>
 						</li>
 					</ul>
 				</div>
-				
-			
-	</header>
-	<!-- [ Header ] end -->
+			</header>
+			<!-- [ Header ] end -->';
+
+			return $cont;
+		}
+	}
+?>
