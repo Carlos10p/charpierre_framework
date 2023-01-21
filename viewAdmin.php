@@ -13,21 +13,20 @@
 			if(isset($_SESSION['user'])){
 				//creamos los objetos
 				$menu = new menu();
-				$head = new head();
 				$header = new header();
+				$head = new head();
 
 				$menuView = $menu->muestraMenu();
-				$headView = $head->mostrar();
 				$headerView = $header->mostrar();
+				$headView = $head->mostrar();
 
 				$cont ='';
 				$cont .= '
 				<!DOCTYPE html>
 				<html lang="es">
 					<head>
-						';
-						$cont .= $headView.
-			$cont .='</head>
+						'.$headView.'
+					</head>
 					<body class="">
 						<div id ="alerta" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog">
 							<div class="modal-dialog" role="document">
@@ -51,28 +50,63 @@
 								</div>
 							</div>
 							<!-- [ Pre-loader ] End -->
+							<!-- [ Header ] start -->
+							<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+								<div class="m-header">
+									<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+									<a href="#!" class="b-brand">
+										<!-- ========   change your logo hear   ============ -->
+										<img src="assets/images/logo.png" alt="" class="logo">
+										<img src="assets/images/logo-icon.png" alt="" class="logo-thumb">
+									</a>
+									<a href="#!" class="mob-toggler">
+										<i class="feather icon-more-vertical"></i>
+									</a>
+								</div>
+								<div class="collapse navbar-collapse">
+									<ul class="navbar-nav ml-auto">						
+										<li>
+											<div class="dropdown drp-user">
+												<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+													<i class="feather icon-user"></i>
+												</a>
+												<div class="dropdown-menu dropdown-menu-right profile-notification">
+													<div class="pro-head">
+														<img src="assets/images/user/avatar.png" class="img-radius" alt="User-Profile-Image">
+														<span>'.$_SESSION['user']['nombre'].'</span>
+													</div>
+													<ul class="pro-body">
+														<li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Mi Cuenta</a></li>
+														<li><a href="?request=logOff" class="dropdown-item"><i class="feather icon-log-out"></i> Salir</a></li>
+													</ul>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</header>
+							<!-- [ Header ] end -->
 							';
-							$cont .=$headerView;
-							
 							$cont .= $menuView;
 							
 							$modulo ='';
 							if(isset($_GET['page'])){
 								switch($_GET['page']){
 									case 'home':
-										$$modulo = require_once './modulos/home/home.php';
+										$modulo = new viewHome();
 										break;
 									case 'cobranza':
-										$$modulo = require_once './modulos/cobranza/cobranza.php';
+										$modulo = new viewCobranza();
 										break;
 									default:
-										$$modulo = require_once './modulos/home/home.php';
+										$modulo = new viewHome();
 									break;
 								}
 							}
 							else{
-								$modulo .= require_once './modulos/home/home.php';
+								$modulo = new viewHome();
 							}
+							$cont.= $modulo->mostrar();
 				$cont .='=<!-- [ Main Content ] end -->
 					
 						<!-- Required Js -->

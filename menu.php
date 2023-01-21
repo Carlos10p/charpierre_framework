@@ -28,8 +28,7 @@
 					<!-- [ navigation menu ] start -->
 					<nav class="pcoded-navbar menu-light ">
 						<div class="navbar-wrapper  ">
-							<div class="navbar-content scroll-div " >
-								
+							<div class="navbar-content scroll-div ">
 								<div class="">
 									<div class="main-menu-header">
 										<img class="img-radius" src="assets/images/user/avatar.png" alt="User-Profile-Image">

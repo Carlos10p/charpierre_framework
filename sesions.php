@@ -9,7 +9,7 @@
                     // if(isset($_SESSION['user'])){
                     //     session_destroy();
                     // }
-                    if(session_status() == PHP_SESSION_ACTIVE){
+                    if(session_status() != PHP_SESSION_ACTIVE){
                         session_start();
                     }
                     else{
