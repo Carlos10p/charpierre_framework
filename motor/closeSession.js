@@ -6,15 +6,17 @@ var id = window.setInterval(
             n =10;
         };
         n--;
-        
-        if(n == -1){
-            
+        console.log(n);
+        if(n <= -1){
+            //ELIMINAR TODAS LAS COOKIES
+            document.cookie.split(";").forEach(function(c) {
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+              });
+            //MUESTRA EL MODAL
             $('#alerta').modal({backdrop: 'static'});
-            
-            
-            $("#closeSession").click(function(){
-                location.href='./?request=logOff';
-            });
-
         }
-    },600000);
+    },1200);
+
+    $("#closeSession").click(function(){
+        location.href='./?request=logOff';
+    });
