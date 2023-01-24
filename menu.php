@@ -1,10 +1,10 @@
 <?php
 	require_once '.'.DIRECTORY_SEPARATOR.'motor'.DIRECTORY_SEPARATOR.'conexion.php';
 	class menu{
-		function muestraMenu(){
+		function muestraMenu($perfil){
 			$conexion = new conexion();
 
-			$sql="CALL sp_charpierre_listaModulos();";
+			$sql="CALL sp_charpierre_listaModulos(".$conexion->procesaNULL($perfil).");";
 
 			$resultado= $conexion->realizaConsulta($sql);
 

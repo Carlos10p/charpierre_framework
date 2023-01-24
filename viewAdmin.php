@@ -5,6 +5,7 @@
 	require_once '.'.DIRECTORY_SEPARATOR.'head.php';
 	require_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'home'.DIRECTORY_SEPARATOR.'home.php';
 	require_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'cobranza'.DIRECTORY_SEPARATOR.'cobranza.php';
+	include_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'perfil'.DIRECTORY_SEPARATOR.'perfil.php';
 
 
 	class viewAdmin{
@@ -16,7 +17,7 @@
 				$header = new header();
 				$head = new head();
 
-				$menuView = $menu->muestraMenu();
+				$menuView = $menu->muestraMenu($_SESSION['user']['perfil']);
 				$headerView = $header->mostrar();
 				$headView = $head->mostrar();
 
@@ -63,6 +64,12 @@
 									case 'ventas':
 										$modulo = new viewCobranza();
 										break;
+									case 'cobranza':
+										$modulo = new viewCobranza();
+										break;
+									case 'perfil':
+										$modulo = new viewPerfil();
+										break;
 									default:
 										$modulo = new viewHome();
 									break;
@@ -73,6 +80,8 @@
 							}
 							$cont.= $modulo->mostrar();
 				$cont .='=<!-- [ Main Content ] end -->
+
+						<script src="./motor/charpierre_funciones.js"></script>
 					
 						<!-- Required Js -->
 						<script src="assets/js/vendor-all.min.js"></script>

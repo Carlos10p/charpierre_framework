@@ -52,7 +52,8 @@
                                     'id'=>$row['id'],
                                     'usuario'=>$row['usuario'],
                                     'nombre'=>$row['nombre'],
-                                    'foto'=>$row['foto']
+                                    'foto'=>$row['foto'],
+                                    'perfil'=>$row['perfil']
                                 );
                     
                 }

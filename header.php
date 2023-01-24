@@ -30,7 +30,7 @@
 										<span>'.$_SESSION['user']['nombre'].'</span>
 									</div>
 									<ul class="pro-body">
-										<li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Mi Cuenta</a></li>
+										<li><a href="?page=perfil" class="dropdown-item"><i class="feather icon-user"></i> Cambiar contraseña</a></li>
 										<li><a href="?request=logOff" class="dropdown-item"><i class="feather icon-log-out"></i> Salir</a></li>
 									</ul>
 								</div>

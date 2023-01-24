@@ -1,9 +1,9 @@
 
-var n = 10;
+var n = 120;
 var id = window.setInterval(
     function(){
         document.onmousemove = function(){
-            n =10;
+            n =120;
         };
         n--;
         console.log(n);
