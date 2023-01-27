@@ -1,12 +1,19 @@
+
 $(document).ready(function() {
         $('#btn-changePass').click(function(){
-                let resultado = validaChangePassword("newPass1","newPass2");
+            let fun = new funciones();
+                let resultado = fun.validaChangePassword("newPass1","newPass2");
                 if(resultado == false){
-                    alert("Datos incorrectos");
+                    $("#alertaPass").show("fast");
+                    $("#alertaSuccessPass").hide("fast");
                 }
                 else{
-                    alert("toddo bien");
+                    alert(md5($("#newPass1").val()));
+                    $("#alertaSuccessPass").show("fast");
+                    $("#alertaPass").hide("fast");
                 }
+
+                
             }
         );
     }

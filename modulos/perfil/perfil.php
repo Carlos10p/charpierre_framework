@@ -46,7 +46,19 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="row justify-content-center">
+                                                    
                                                     <div class="col-md-3">
+                                                        <div class="form-group fill">
+                                                            <div class="alert alert-danger" role="alert" id="alertaPass">
+                                                                Los campos no coinciden o estan vacios, intente nuevamente
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group fill">
+                                                            <div class="alert alert-success" role="success" id="alertaSuccessPass">
+                                                                El password se ha cambiado con exito.
+                                                            </div>
+                                                        </div>
+                                                        <br>
                                                         <div class="form-group fill">
                                                             <label class="form-label" for="newPass1">Nueva Contraseña</label>
                                                             <input type="password" class="form-control" id="newPass1" placeholder="Coloca tu nueva contraseña" required>
