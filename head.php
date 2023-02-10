@@ -3,11 +3,11 @@ class head{
     function mostrar(){
         $cont = '';
         $cont = '
-                    <title>CHARRPIERRE FRAMEWORK</title>
+                    <title>DAKRON MANAGER</title>
                     
-                        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+                    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
                         
                     <!-- Meta -->
                     <meta charset="utf-8">
@@ -19,16 +19,24 @@ class head{
                     <!-- Favicon icon -->
                     <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
 
-                    <script src="./motor/charpierre_funciones.js"></script>
+                    
                     <script src="./motor/md5.js"></script>
 
                     <!-- vendor css -->
                     <link rel="stylesheet" href="assets/css/style.css">
                     <link rel="stylesheet" href="./motor/custom.css">
+
+                    <!-- Plugins -->
+
+                    <script type="text/javascript" src="./assets/js/plugins/datatables/datatables.min.js"></script>
+                    <script type="text/javascript" src="./assets/js/plugins/datatables/DataTables-1.13.2/js/dataTables.bootstrap4.min.js"></script>
+
+                    <link rel="stylesheet" type="text/css" href="./assets/js/plugins/datatables/datatables.min.css">
+                    <link rel="stylesheet" type="text/css" href="./assets/js/plugins/datatables/DataTables-1.13.2/css/dataTables.bootstrap4.min.css">
                     
                     ';
 
-                    
+        
         
         return $cont;
     }

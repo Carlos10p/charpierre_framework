@@ -8,10 +8,10 @@ class conexion{
     private $con;
     //FUNCION CONECTAR DONDE SE CARGA TODOS LOS DATOS DE CONEXION A LA BASE DE DATOS
     private function conectar(){
-        $host='localhost';
-        $user='root';
-        $pass='';
-        $db='charpierre';
+        $host='195.179.237.0:3306';
+        $user='u748616290_prueba';
+        $pass='kCWq899C>x2O';
+        $db='u748616290_testing';
 
         $this->con = mysqli_connect($host,$user,$pass);
         mysqli_select_db($this->con,$db);

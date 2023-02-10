@@ -4,7 +4,7 @@
 	require_once '.'.DIRECTORY_SEPARATOR.'header.php';
 	require_once '.'.DIRECTORY_SEPARATOR.'head.php';
 	require_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'home'.DIRECTORY_SEPARATOR.'home.php';
-	require_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'cobranza'.DIRECTORY_SEPARATOR.'cobranza.php';
+	require_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'clientes'.DIRECTORY_SEPARATOR.'clientes.php';
 	include_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'perfil'.DIRECTORY_SEPARATOR.'perfil.php';
 
 
@@ -64,8 +64,8 @@
 									case 'ventas':
 										$modulo = new viewCobranza();
 										break;
-									case 'cobranza':
-										$modulo = new viewCobranza();
+									case 'clientes':
+										$modulo = new viewClientes();
 										break;
 									case 'perfil':
 										$modulo = new viewPerfil();

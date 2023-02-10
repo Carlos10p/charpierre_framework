@@ -6,7 +6,7 @@ var id = window.setInterval(
             n =120;
         };
         n--;
-        console.log(n);
+        
         if(n <= -1){
             //ELIMINAR TODAS LAS COOKIES
             document.cookie.split(";").forEach(function(c) {

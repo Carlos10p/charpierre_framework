@@ -1,6 +1,5 @@
 class funciones{
-    
-     validaChangePassword(idInput1,idInput2){
+    validaChangePassword(idInput1,idInput2){
 
         let texto1 = $("#"+idInput1).val();
         let texto2 = $("#"+idInput2).val();
@@ -25,12 +24,38 @@ class funciones{
 
     validaFormularios(input){
          // [ Initialize validation ] start
-         $('#'+input).css("border-bottom"," 1px solid red");
-         $('#'+input).css("color"," red");
+        $('#'+input).css("border-bottom"," 1px solid red");
+        $('#'+input).css("color"," red");
     }
     modalLoad(){
         let html = "";
+    }
 
-        
+    generaDataTable(id){
+        let tabla = new DataTable(id,{
+            language: {
+                processing:     "Procesando...",
+                search:         "Buscar&nbsp;:",
+                lengthMenu:    "Mostrar _MENU_ elementos",
+                info:           "Mostrando _START_ elemento a _END_ de _TOTAL_",
+                infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                infoPostFix:    "",
+                loadingRecords: "Cargando Datos...",
+                zeroRecords:    "Base de datos vacia",
+                emptyTable:     "Ningun dato disponible en esta tabla",
+                paginate: {
+                    first:      "Primero",
+                    previous:   "Anterior",
+                    next:       "Siguiente",
+                    last:       "Ultimo"
+                },
+                aria: {
+                    sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                    sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                }
+            }
+        } 
+        );
     }
 }
