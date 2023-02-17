@@ -61,9 +61,6 @@
 									case 'home':
 										$modulo = new viewHome();
 										break;
-									case 'ventas':
-										$modulo = new viewCobranza();
-										break;
 									case 'clientes':
 										$modulo = new viewClientes();
 										break;

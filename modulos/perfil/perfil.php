@@ -1,11 +1,12 @@
 <?php
+    
+
     class viewPerfil{
         private $modulojs= '<script src="./modulos/perfil/perfil.js"></script>';
-            
-        function mostrar(){
 
-                $cont ='
-                        <!-- [ Main Content ] start -->
+        function mostrar(){
+                
+                $cont ='<!-- [ Main Content ] start -->
                         <div class="pcoded-main-container">
                             <div class="pcoded-content">
                                 <!-- [ breadcrumb ] start -->
@@ -46,7 +47,6 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="row justify-content-center">
-                                                    
                                                     <div class="col-md-3">
                                                         <div class="form-group fill">
                                                             <div class="alert alert-danger" role="alert" id="alertaPass">
@@ -60,12 +60,12 @@
                                                         </div>
                                                         <br>
                                                         <div class="form-group fill">
-                                                            <label class="form-label" for="newPass1">Nueva Contraseña</label>
-                                                            <input type="password" class="form-control" id="newPass1" placeholder="Coloca tu nueva contraseña" required>
+                                                            <label class="floating-label" for="newPass1">Nueva Contraseña</label>
+                                                            <input type="password" class="form-control" id="newPass1" required>
                                                         </div>
                                                         <div class="form-group fill">
-                                                            <label class="form-label" for="newPass2">Confirmacion de contraseña</label>
-                                                            <input type="password" class="form-control" id="newPass2" placeholder="Repite la contraseña" required>
+                                                            <label class="floating-label" for="newPass2">Confirmacion de contraseña</label>
+                                                            <input type="password" class="form-control" id="newPass2"  required>
                                                         </div>
                                                         <button type="button" id="btn-changePass" class="btn btn-outline-success has-ripple">Cambiar contraseña<span class="ripple ripple-animate" style="height: 90.8281px; width: 90.8281px; animation-duration: 0.7s; animation-timing-function: linear; background: rgb(255, 255, 255); opacity: 0.4; top: -31.5938px; left: -23.3438px;"></span></button>
                                                     </div>
@@ -82,6 +82,6 @@
                         $cont .= $this->modulojs;
 
                 return $cont;
-            }
+        }
     }
 ?>

@@ -9,7 +9,7 @@ class viewLogin{
 		
 		<head>
 		
-			<title>CHARPIERRE FRAMEWORK</title>
+			<title>DAKRON MANAGER</title>
 			<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
 			<!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
 			<!--[if lt IE 11]>
@@ -46,6 +46,8 @@ class viewLogin{
 											</div>';
 								}
 								$cont .= '
+								<img src="./assets/images/auth/auth-logo.png" style="width:200px; margin-bottom: 20px;">
+								
 								<h4 class="mb-3 f-w-400">Ingresar</h4>
 								<form action="" method="post">
 									<div class="form-group mb-3">
