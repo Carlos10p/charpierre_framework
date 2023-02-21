@@ -60,6 +60,7 @@
                                                         </div>
                                                         <br>
                                                         <div class="form-group fill">
+                                                            
                                                             <label class="floating-label" for="newPass1">Nueva Contraseña</label>
                                                             <input type="password" class="form-control" id="newPass1" required>
                                                         </div>

@@ -8,13 +8,16 @@ $(document).ready(function() {
                     $("#alertaSuccessPass").hide("fast");
                 }
                 else{
-                    
-                    alert(md5($("#newPass1").val()));
                     $("#alertaSuccessPass").show("fast");
                     $("#alertaPass").hide("fast");
 
+                    let formData = new FormData();
+                    formData.append('contrasena',$("#newPass1").val());
+                    formData.append('funcion','cambiaContraseña');
+
                     let ajax = new charpierre_ajax();
-                    ajax.realizaPeticion("../modulos/perfil/select_function.php","cambiaContraseña");
+                    ajax.realizaPeticion("./modulos/perfil/select_function.php", formData);
+                    $('#carga').modal('hide');
                     
                 }
             }

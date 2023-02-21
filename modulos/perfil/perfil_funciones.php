@@ -1,29 +1,36 @@
 <?php 
-    require_once '.'.DIRECTORY_SEPARATOR.'motor'.DIRECTORY_SEPARATOR.'conexion.php';
+    require_once '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'motor'.DIRECTORY_SEPARATOR.'conexion.php';
 
     class perfil_funciones{
         function changePass($idUser,$contra){
-            $datos = false;
-            $conexion = new conexion();
+            try{
+                $datos = [
+                    'error'=>false,
+                    'resultado'=>false
+                    ];
+                $conexion = new conexion();
 
-            $sql="CALL sp_usuarios_login(
-                ".$conexion->procesaNULL($idUser).", 
-                ".$conexion->procesaNULL($contra)."
-            );";
 
-            $resultado= $conexion->realizaConsulta($sql);
+                $sql="CALL sp_cambia_pass(
+                    ".$conexion->procesaNULL($idUser,FALSE).", 
+                    ".$conexion->procesaNULL($contra,TRUE)."
+                );";
 
-            $num=$conexion->bd_cuentaRegistros($resultado);
+                $resultado= $conexion->realizaConsulta($sql);
 
-            if($num>0){
-                
-                while($row = $conexion->bd_dameRegistro($resultado)){
+                    if($conexion->bd_cuentaRegistros($resultado)>0){
                     
-                    $datos = $row['resultado'];
-                    
-                }
+                        while($row = $conexion->bd_dameRegistro($resultado)){
+                            
+                            $datos['resultado'] = $row['resultado'];
+                            
+                        }
+                    }
+                return $datos;
             }
-            return $datos;
+            catch(Exception $e){
+                echo 'Ocurrio un error'.$e->getMessage();
+            }
         }
     }
 ?>

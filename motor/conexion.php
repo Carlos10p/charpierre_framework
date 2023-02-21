@@ -30,7 +30,7 @@ class conexion{
     function realizaConsulta($sql){
 
         $consult = mysqli_query($this->conectar(),$sql);
-        $this->bd_desconectar();
+        //$this->bd_desconectar();
 
         return $consult;
     }

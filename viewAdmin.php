@@ -44,6 +44,21 @@
 								</div>
 							</div>
 						</div>
+						<div id ="carga" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<center>
+										<div class="modal-body">
+											<div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem; margin-top:5px;margin-bottom:15px;">
+												<span class="sr-only">Loading...</span>
+											</div>
+											
+											<h5>Espere...</h5>
+										</div>
+									</center>
+								</div>
+							</div>
+						</div>
 							<!-- [ Pre-loader ] start -->
 							<div class="loader-bg">
 								<div class="loader-track">
@@ -79,6 +94,7 @@
 				$cont .='=<!-- [ Main Content ] end -->
 
 						<script src="./motor/charpierre_funciones.js"></script>
+						<script src="./motor/charpierre_ajax.js"></script>
 					
 						<!-- Required Js -->
 						<script src="assets/js/vendor-all.min.js"></script>

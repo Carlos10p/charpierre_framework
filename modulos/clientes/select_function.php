@@ -4,16 +4,16 @@ session_start();
 if(isset($_POST['funcion']) && !empty($_POST['funcion'])) {
     $funcion = $_POST['funcion'];
 
-    require_once '.'.DIRECTORY_SEPARATOR.'perfil_funciones.php';
+    require_once '.'.DIRECTORY_SEPARATOR.'clientes_funciones.php';
     //En función del parámetro que nos llegue ejecutamos una función u otra
 
-    $funciones = new perfil_funciones();
+    $funciones = new clientes_funciones();
     $resultado = array();
 
     switch($funcion) {
         //FUNCIÓN 
-        case 'cambiaContraseña': 
-            $resultado = $funciones -> changePass($_SESSION['user']['id'],$_POST['contrasena']);
+        case 'muestraListadoClientes': 
+            $resultado = $funciones -> listaClientes();
             break;
     }
     
