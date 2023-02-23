@@ -1,6 +1,8 @@
 class charpierre_ajax{
-    realizaPeticion(archivo,formData){
-        let datos = '';
+    realizaPeticion(archivo,formData,callback){
+        let modal = new modalCarga();
+        let res = '';
+        
         $.ajax({
             //cache: false,
             //contentType: "application/json; charset=utf-8",
@@ -12,32 +14,42 @@ class charpierre_ajax{
             processData: false,  // tell jQuery not to process the data
             contentType: false,  // tell jQuery not to set contentType
             beforeSend:function(){
-                $('#carga').modal();
+                modal.abreModal();
                 
             },
             success : function(data) {
-                datos = data;
-                $('#carga').modal('hide');
-                
+                try{
+                    callback(data);
+                }
+                catch(e){
+                    console.log(e);
+                }
                 
             },
             error : function(objXMLHttpRequest) {
                 console.log("error",objXMLHttpRequest);
                 alert('Fallo la petición papito');
-                $('#carga').modal('hide');
+                
 
             }
             ,
             complete:function(){
-                
-                $('#carga').modal('hide');
-                
+                modal.cierraModal();
             }
         });
-        return datos;
-    }
-    
-    cierraModal(){
-        $('#carga').modal('hide');
     }
 }
+
+class modalCarga{
+    abreModal(){
+        
+        $('#carga').modal({backdrop:false});
+        $('.modal-backdrop fade show').hide();
+    }
+    cierraModal(){
+        $('#carga').hide("fadeOut");
+        $('#carga').modal({backdrop:false});
+    }
+}
+
+

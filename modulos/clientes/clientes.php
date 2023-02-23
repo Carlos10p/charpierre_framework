@@ -51,43 +51,7 @@ class viewClientes{
 															<th scope="col">Acciones</th>
 														</tr>
 													</thead>
-													<tbody>
-													<tr>
-														<th scope="row">1</th>
-														<td>Mark</td>
-														<td>Otto</td>
-														<td>@mdo</td>
-														<td><i class="feather icon-check-circle" style="color:green; font-size: 22px;"></i></td>
-														<td>
-															<button type="button" class="btn btn-secondary"><i class="feather icon-map-pin"></i></button>
-															<button type="button" class="btn btn-success"><i class="feather icon-eye"></i></button>
-															<button type="button" class="btn btn-danger"><i class="feather icon-trash-2"></i></button>
-														</td>
-													</tr>
-													<tr>
-														<th scope="row">2</th>
-														<td>Jacob</td>
-														<td>Thornton</td>
-														<td>@fat</td>
-														<td><i class="feather icon-x-circle" style="color:red; font-size: 22px;"></i></td>
-														<td>
-															<button type="button" class="btn btn-secondary"><i class="feather icon-map-pin"></i></button>
-															<button type="button" class="btn btn-success"><i class="feather icon-eye"></i></button>
-															<button type="button" class="btn btn-danger"><i class="feather icon-trash-2"></i></button>
-														</td>
-													</tr>
-													<tr>
-														<th scope="row">3</th>
-														<td>Larry</td>
-														<td>the Bird</td>
-														<td>@twitter</td>
-														<td><i class="feather icon-check-circle" style="color:green; font-size: 22px;"></i></td>
-														<td>
-															<button type="button" class="btn btn-secondary"><i class="feather icon-map-pin"></i></button>
-															<button type="button" class="btn btn-success"><i class="feather icon-eye"></i></button>
-															<button type="button" class="btn btn-danger"><i class="feather icon-trash-2"></i></button>
-														</td>
-													</tr>
+													<tbody id="tablaClientes_body">
 													</tbody>
 												</table>
 											</div>
