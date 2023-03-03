@@ -28,7 +28,7 @@ class charpierre_ajax{
             },
             error : function(objXMLHttpRequest) {
                 console.log("error",objXMLHttpRequest);
-                alert('Fallo la petición papito');
+                alert('Fallo la petición');
                 
 
             }
@@ -44,11 +44,10 @@ class modalCarga{
     abreModal(){
         
         $('#carga').modal({backdrop:false});
-        $('.modal-backdrop fade show').hide();
+        $('#carga').show("slow");
     }
     cierraModal(){
-        $('#carga').hide("fadeOut");
-        $('#carga').modal({backdrop:false});
+        $('#carga').hide("slow");
     }
 }
 

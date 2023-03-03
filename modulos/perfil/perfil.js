@@ -13,7 +13,7 @@ $(document).ready(function() {
                 formData.append('funcion','cambiaContraseña');
 
                 let ajax = new charpierre_ajax();
-                ajax.realizaPeticion("./modulos/perfil/select_function.php", function(datos){
+                ajax.realizaPeticion("./modulos/perfil/select_function.php",formData, function(datos){
 
                     if(datos['error'] == false){
                         if(datos['resultado'] == 'TRUE'){

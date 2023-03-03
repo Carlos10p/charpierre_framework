@@ -40,10 +40,10 @@ function cargaTabla(){
             arrResultado.forEach(function(arr){
                 let aut = '';
                 if(arr['estatus'] == 'AUTENTICADO'){
-                    aut='<td><i class="feather icon-check-circle" style="color:green; font-size: 22px;"></i> '+arr['estatus']+'</td>';
+                    aut='<td style="color:green;"><i class="feather icon-check-circle" style="color:green; font-size: 22px;"></i> '+arr['estatus']+'</td>';
                 }
                 else{
-                    aut='<td><i class="feather icon-x-circle" style="color:red; font-size: 22px;"></i> '+arr['estatus']+'</td>'
+                    aut='<td style="color:red;"><i class="feather icon-x-circle" style="color:red; font-size: 22px;"></i> '+arr['estatus']+'</td>'
                 }
                 let texto = '<tr>'+
                                 '<th scope="row">'+arr['id_cliente']+'</th>'+
@@ -66,7 +66,7 @@ function cargaTabla(){
             setTimeout(() => {
                 let fun = new funciones();
                 fun.generaDataTable("#tablaClientes");
-            }, 500);
+            }, 100);
             
         }
         else{
