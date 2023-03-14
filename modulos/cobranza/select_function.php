@@ -4,7 +4,7 @@ session_start();
 if(isset($_POST['funcion']) && !empty($_POST['funcion'])) {
     $funcion = $_POST['funcion'];
 
-    require_once '.'.DIRECTORY_SEPARATOR.'clientes_funciones.php';
+    require_once '.'.DIRECTORY_SEPARATOR.'cobranza_funciones.php';
     //En función del parámetro que nos llegue ejecutamos una función u otra
 
     $funciones = new clientes_funciones();

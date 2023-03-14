@@ -22,7 +22,7 @@ function cargaTabla(){
     formData.append('funcion','muestraListadoClientes');
     let ajax = new charpierre_ajax();
 
-    ajax.realizaPeticion("./modulos/clientes/select_function.php", formData,function(datos){
+    ajax.realizaPeticion("./modulos/cobranza/select_function.php", formData,function(datos){
 
         if(datos['error']==false){
             arrResultado = datos['resultado'];
@@ -38,16 +38,6 @@ function cargaTabla(){
                 else{
                     aut='<td style="color:blue;"><i class="feather icon-info" style="color:blue; font-size: 22px;"></i> '+arr['estatus']+'</td>';
                 }
-
-                let map = '';
-
-                if(arr['estatus'] == 'AUTENTICADO' || arr['estatus'] == 'SIN AUTENTICAR'){
-                    map = '<a href="'+arr['ubicacion']+'" class="btn btn-secondary" data-id="'+arr['id_cliente']+'" target="_blank"><i class="feather icon-map-pin"></i></a>'
-                }
-                else{
-                    map = '<button class="btn btn-secondary" data-id="'+arr['id_cliente']+'" target="_blank" disabled><i class="feather icon-map-pin"></i></button>'
-                }
-                
                 let texto = '<tr>'+
                                 '<th scope="row">'+arr['id_cliente']+'</th>'+
                                 '<td>'+arr['nombre']+'</td>'+
@@ -55,7 +45,6 @@ function cargaTabla(){
                                 '<td>'+arr['telefono']+'</td>'+
                                 aut+
                                 '<td>'+
-                                    map+
                                     '<button type="button" class="btn btn-success verCliente" id="verCliente" data-id="'+arr['id_cliente']+'"><i class="feather icon-eye"></i></button>'+
                                     '<button type="button" class="btn btn-danger" data-id="'+arr['id_cliente']+'"><i class="feather icon-trash-2"></i></button>'+
                                 '</td>'+
@@ -129,7 +118,7 @@ function insertaCliente(){
 
         let ajax = new charpierre_ajax();
 
-        ajax.realizaPeticion("./modulos/clientes/select_function.php", formData,function(datos){
+        ajax.realizaPeticion("./modulos/cobranza/select_function.php", formData,function(datos){
 
             if(datos['error']==false){
                 arrResultado = datos['resultado'];
@@ -158,7 +147,7 @@ function muestraCliente(data){
     formData.append('funcion','verCliente');
     formData.append('idCliente',idCliente);
 
-    ajax.realizaPeticion("./modulos/clientes/select_function.php", formData,function(datos){
+    ajax.realizaPeticion("./modulos/cobranza/select_function.php", formData,function(datos){
 
         if(datos['error']==false){
             arrResultado = datos['resultado'];
