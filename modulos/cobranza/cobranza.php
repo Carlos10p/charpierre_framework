@@ -29,18 +29,18 @@ class viewCobranza{
 							<div class="row">
 								<!-- [ sample-page ] start -->
 								<div class="col-sm-12">
-									<div class="card" id="listaCliente">
+									<div class="card" id="listaCobranza">
 										<div class="card-header">
 											<h5>LISTA DE VENTAS</h5>
 											<div class="card-header-right">
 												<div class="btn-group card-option">
-													<button type="button" class="btn btn-primary" id="agregarCliente"><i class="feather icon-plus"></i> Registrar</button>
+													<button type="button" class="btn btn-primary" id="agregarCobranza"><i class="feather icon-plus"></i> Registrar</button>
 												</div>
 											</div>
 										</div>
 										<div class="card-body">
 											<div class="table-responsive">
-												<table class="table table-striped table-hover" id="tablaClientes">
+												<table class="table table-striped table-hover" id="tablaCobranzas">
 													<thead>
 														<tr>
 															<th scope="col">#</th>
@@ -48,16 +48,17 @@ class viewCobranza{
 															<th scope="col">Costo</th>
 															<th scope="col">Googler</th>
 															<th scope="col">Promesa Pago</th>
+															<th scope="col">Estatus</th>
 															<th scope="col">Acciones</th>
 														</tr>
 													</thead>
-													<tbody id="tablaClientes_body">
+													<tbody id="tablaCobranzas_body">
 													</tbody>
 												</table>
 											</div>
 										</div>
 									</div>
-									<div class="card" style="display: none;" id="registraClientes">
+									<div class="card" style="display: none;" id="registraCobranzas">
 										<div class="card-header">
 											<h5>REGISTRAR VENTA</h5>
 											<div class="card-header-right">

@@ -12,28 +12,22 @@ if(isset($_POST['funcion']) && !empty($_POST['funcion'])) {
 
     switch($funcion) {
         //FUNCIÓN 
-        case 'muestraListadoClientes': 
-            $resultado = $funciones -> listaClientes();
+        case 'muestraListadoCobranzas': 
+            $resultado = $funciones -> listaCobranzas();
             break;
-            case 'verCliente': 
-                $resultado = $funciones -> muestraCliente($_POST['idCliente']);
+            case 'verCobranza': 
+                $resultado = $funciones -> muestraCobranza($_POST['idCobranza']);
                 break;
-        case 'registraCliente': 
-            $resultado = $funciones -> registraCliente(
-                                                        $_POST['nombre'],
-                                                        $_POST['apPaterno'],
-                                                        $_POST['apMaterno'],
-                                                        $_POST['rfc'],
-                                                        $_POST['curp'],
-                                                        $_POST['calle'],
-                                                        $_POST['colonia'],
-                                                        $_POST['no_ext'],
-                                                        $_POST['no_int'],
-                                                        $_POST['ciudad'],
-                                                        $_POST['estado'],
-                                                        $_POST['cp'],
-                                                        $_POST['telefono'],
-                                                        $_POST['email']
+        case 'registraCobranza': 
+            $resultado = $funciones -> registraCobranza(
+                                                        $_POST['producto'],
+                                                        $_POST['costo'],
+                                                        $_POST['fechaPromesa'],
+                                                        $_POST['factura'],
+                                                        $_POST['orden'],
+                                                        $_POST['contrato'],
+                                                        $_POST['cliente'],
+                                                        $_POST['googler']
                                                     );
             break;
     }

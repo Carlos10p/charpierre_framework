@@ -1,13 +1,13 @@
 $(document).ready(function() {
         cargaTabla();
 
-        $("#agregarCliente").click(function(){
+        $("#agregarCobranza").click(function(){
             let validacion = false;
             muestraOculta(validacion);
         });
 
         $("#enviar").click(function(){
-            insertaCliente();
+            insertaCobranza();
         });
 
         $("#irAtras").click(function(){
@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 function cargaTabla(){
     let formData = new FormData();
-    formData.append('funcion','muestraListadoClientes');
+    formData.append('funcion','muestraListadoCobranzas');
     let ajax = new charpierre_ajax();
 
     ajax.realizaPeticion("./modulos/cobranza/select_function.php", formData,function(datos){
@@ -29,39 +29,43 @@ function cargaTabla(){
             let html = '';
             arrResultado.forEach(function(arr){
                 let aut = '';
-                if(arr['estatus'] == 'AUTENTICADO'){
+                if(arr['estatus'] == 'Pagado'){
                     aut='<td style="color:green;"><i class="feather icon-check-circle" style="color:green; font-size: 22px;"></i> '+arr['estatus']+'</td>';
                 }
-                else if (arr['estatus'] == 'SIN AUTENTICAR'){
+                else if (arr['estatus'] == 'No pagado'){
                     aut='<td style="color:red;"><i class="feather icon-x-circle" style="color:red; font-size: 22px;"></i> '+arr['estatus']+'</td>';
                 }
                 else{
                     aut='<td style="color:blue;"><i class="feather icon-info" style="color:blue; font-size: 22px;"></i> '+arr['estatus']+'</td>';
                 }
                 let texto = '<tr>'+
-                                '<th scope="row">'+arr['id_cliente']+'</th>'+
-                                '<td>'+arr['nombre']+'</td>'+
-                                '<td>'+arr['correo']+'</td>'+
-                                '<td>'+arr['telefono']+'</td>'+
+                                '<th scope="row">'+arr['id_cobranza']+'</th>'+
+                                '<td>'+arr['producto']+'</td>'+
+                                '<td>'+arr['costo']+'</td>'+
+                                '<td>'+arr['vendedor']+'</td>'+
+                                '<td>'+arr['fechaPromesaPago']+'</td>'+
                                 aut+
                                 '<td>'+
-                                    '<button type="button" class="btn btn-success verCliente" id="verCliente" data-id="'+arr['id_cliente']+'"><i class="feather icon-eye"></i></button>'+
-                                    '<button type="button" class="btn btn-danger" data-id="'+arr['id_cliente']+'"><i class="feather icon-trash-2"></i></button>'+
+                                    '<a href="'+arr['No_factura']+'" type="button" class="btn btn-secondary" target="_blank" ><i class="feather icon-file-text"></i></a>'+
+                                    '<a href="'+arr['contrato']+'" type="button" class="btn btn-primary" target="_blank" ><i class="feather icon-file-text"></i></a>'+
+                                    '<a href="'+arr['ordenProducción']+'" type="button" class="btn btn-warning" target="_blank" ><i class="feather icon-paperclip"></i></a>'+
+                                    '<button type="button" class="btn btn-success verCobranza" id="verCobranza" data-id="'+arr['id_cobranza']+'"><i class="feather icon-eye"></i></button>'+
+                                    '<button type="button" class="btn btn-danger" data-id="'+arr['id_cobranza']+'"><i class="feather icon-trash-2"></i></button>'+
                                 '</td>'+
                             '</tr>';
                         html = html + texto;
                 
             });
 
-            $("#tablaClientes_body").html(html);
+            $("#tablaCobranzas_body").html(html);
 
             setTimeout(() => {
                 let fun = new funciones();
-                fun.generaDataTable("#tablaClientes");
+                fun.generaDataTable("#tablaCobranzas");
             }, 100);
             
-            $('.verCliente').on('click',function () {
-                muestraCliente(this);
+            $('.verCobranza').on('click',function () {
+                muestraCobranza(this);
             });
         }
         else{
@@ -73,8 +77,8 @@ function cargaTabla(){
 
 function muestraOculta($oculta,$limpia = true){
     if($oculta == true){
-            $('#registraClientes').hide();
-            $('#listaCliente').show();
+            $('#registraCobranzas').hide();
+            $('#listaCobranza').show();
             if($limpia == true){
                 $("#nombre").val('');
                 $("#apPaterno").val('');
@@ -91,30 +95,25 @@ function muestraOculta($oculta,$limpia = true){
             
     }
     else{
-            $('#registraClientes').show();
-            $('#listaCliente').hide();
+            $('#registraCobranzas').show();
+            $('#listaCobranza').hide();
     }
 }
 
-function insertaCliente(){
+function insertaCobranza(){
     try{
         let formData = new FormData();
 
-        formData.append('funcion','registraCliente');
-        formData.append('nombre',$('#nombre').val());
-        formData.append('apPaterno',$('#apPaterno').val());
-        formData.append('apMaterno',$('#apMaterno').val());
-        formData.append('rfc',$('#rfc').val());
-        formData.append('curp',$('#curp').val());
-        formData.append('calle',$('#calle').val());
-        formData.append('colonia',$('#colonia').val());
-        formData.append('no_ext',$('#no_ext').val());
-        formData.append('no_int',$('#no_int').val());
-        formData.append('ciudad',$('#ciudad').val());
-        formData.append('estado',$('#estado').val());
-        formData.append('cp',$('#cp').val());
-        formData.append('telefono',$('#telefono').val());
-        formData.append('email',$('#email').val());
+        formData.append('funcion','registraCobranza');
+        formData.append('producto',$('#producto').val());
+        formData.append('costo',$('#costo').val());
+        formData.append('fechaPromesa',$('#fechaPromesa').val());
+        formData.append('factura',$('#factura').val());
+        formData.append('orden',$('#orden').val());
+        formData.append('contrato',$('#contrato').val());
+        formData.append('cliente',$('#cliente').val());
+        formData.append('googler',$('#googler').val());
+        
 
         let ajax = new charpierre_ajax();
 
@@ -139,13 +138,13 @@ function insertaCliente(){
 }
 
 
-function muestraCliente(data){
-    let idCliente = $(data).data("id");
+function muestraCobranza(data){
+    let idCobranza = $(data).data("id");
     let ajax = new charpierre_ajax();
     let formData = new FormData();
 
-    formData.append('funcion','verCliente');
-    formData.append('idCliente',idCliente);
+    formData.append('funcion','verCobranza');
+    formData.append('idCobranza',idCobranza);
 
     ajax.realizaPeticion("./modulos/cobranza/select_function.php", formData,function(datos){
 
@@ -154,20 +153,15 @@ function muestraCliente(data){
             let validacion = false;
             muestraOculta(validacion,false);
 
-            $('#nombre').val(arrResultado[0]['nombre']);
-            $('#apPaterno').val(arrResultado[0]['ap_paterno']);
-            $('#apMaterno').val(arrResultado[0]['ap_materno']);
-            $('#rfc').val(arrResultado[0]['rfc']);
-            $('#curp').val(arrResultado[0]['curp']);
-            $('#calle').val(arrResultado[0]['calle']);
-            $('#colonia').val(arrResultado[0]['colonia']);
-            $('#no_ext').val(arrResultado[0]['no_ext']);
-            $('#no_int').val(arrResultado[0]['no_int']);
-            $('#ciudad').val(arrResultado[0]['ciudad']);
-            $('#estado').val(arrResultado[0]['estado']);
-            $('#cp').val(arrResultado[0]['cp']);
-            $('#telefono').val(arrResultado[0]['telefono']);
-            $('#email').val(arrResultado[0]['mail']);
+            $('#producto').val(arrResultado[0]['producto']);
+            $('#costo').val(arrResultado[0]['costo']);
+            $('#fechaPromesa').val(arrResultado[0]['fechaPromesaPago']);
+            $('#factura').val(arrResultado[0]['No_factura']);
+            $('#orden').val(arrResultado[0]['ordenProducción']);
+            $('#contrato').val(arrResultado[0]['contrato']);
+            $('#cliente').val(arrResultado[0]['cliente']);
+            $('#googler').val(arrResultado[0]['vendedor']);
+    
         }
         else{
             
