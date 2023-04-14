@@ -1,7 +1,7 @@
 $(document).ready(function() {
         cargaTabla();
 
-        $("#agregarCliente").click(function(){
+        $("#agregarPago").click(function(){
             let validacion = false;
             muestraOculta(validacion);
         });
@@ -19,63 +19,41 @@ $(document).ready(function() {
 
 function cargaTabla(){
     let formData = new FormData();
-    formData.append('funcion','muestraListadoClientes');
+    formData.append('funcion','muestraListadoPagos');
     let ajax = new charpierre_ajax();
 
-    ajax.realizaPeticion("./modulos/clientes/select_function.php", formData,function(datos){
+    ajax.realizaPeticion("./modulos/pagos/select_function.php", formData,function(datos){
 
         if(datos['error']==false){
             arrResultado = datos['resultado'];
             let html = '';
             arrResultado.forEach(function(arr){
-                let aut = '';
-                if(arr['estatus'] == 'AUTENTICADO'){
-                    aut='<td style="color:green;"><i class="feather icon-check-circle" style="color:green; font-size: 22px;"></i> '+arr['estatus']+'</td>';
-                }
-                else if (arr['estatus'] == 'SIN AUTENTICAR'){
-                    aut='<td style="color:red;"><i class="feather icon-x-circle" style="color:red; font-size: 22px;"></i> '+arr['estatus']+'</td>';
-                }
-                else{
-                    aut='<td style="color:blue;"><i class="feather icon-info" style="color:blue; font-size: 22px;"></i> '+arr['estatus']+'</td>';
-                }
+                console.log(arr['fechaPago']);
 
-                let map = '';
-
-                if(arr['estatus'] == 'AUTENTICADO' || arr['estatus'] == 'SIN AUTENTICAR'){
-                    map = '<a href="'+arr['ubicacion']+'" class="btn btn-secondary" data-id="'+arr['id_cliente']+'" target="_blank"><i class="feather icon-map-pin"></i></a>'
-                }
-                else{
-                    map = '<button class="btn btn-secondary" data-id="'+arr['id_cliente']+'" target="_blank" disabled><i class="feather icon-map-pin"></i></button>'
-                }
-                
                 let texto = '<tr>'+
-                                '<th scope="row">'+arr['id_cliente']+'</th>'+
-                                '<td>'+arr['nombre']+'</td>'+
-                                '<td>'+arr['correo']+'</td>'+
-                                '<td>'+arr['telefono']+'</td>'+
-                                aut+
+                                '<th scope="row">'+arr['id_pago']+'</th>'+
+                                '<td>'+arr['id_cobranza']+'</td>'+
+                                '<td>$'+arr['cantidad']+'</td>'+
+                                '<td>'+arr['tipoPago']+'</td>'+
+                                '<td>'+arr['fechaPago']+'</td>'+
                                 '<td>'+
-                                    map+
-                                    '<button type="button" class="btn btn-success verCliente" id="verCliente" data-id="'+arr['id_cliente']+'"><i class="feather icon-eye"></i></button>'+
-                                    '<button type="button" class="btn btn-danger eliminarCliente" data-id="'+arr['id_cliente']+'"><i class="feather icon-trash-2"></i></button>'+
+                                    '<button type="button" class="btn btn-success verCliente" id="verCliente" data-id="'+arr['id_pago']+'"><i class="feather icon-eye"></i></button>'+
+                                    '<button type="button" class="btn btn-danger" data-id="'+arr['id_pago']+'"><i class="feather icon-trash-2"></i></button>'+
                                 '</td>'+
                             '</tr>';
                         html = html + texto;
                 
             });
 
-            $("#tablaClientes_body").html(html);
+            $("#tablaPagos_body").html(html);
 
             setTimeout(() => {
                 let fun = new funciones();
-                fun.generaDataTable("#tablaClientes");
+                fun.generaDataTable("#tablaPagos");
             }, 100);
             
             $('.verCliente').on('click',function () {
                 muestraCliente(this);
-            });
-            $('.eliminarCliente').on('click',function () {
-                eliminaCliente(this);
             });
         }
         else{
@@ -87,8 +65,8 @@ function cargaTabla(){
 
 function muestraOculta($oculta,$limpia = true){
     if($oculta == true){
-            $('#registraClientes').hide();
-            $('#listaCliente').show();
+            $('#registraPagos').hide();
+            $('#listaPagos').show();
             if($limpia == true){
                 $("#nombre").val('');
                 $("#apPaterno").val('');
@@ -105,8 +83,8 @@ function muestraOculta($oculta,$limpia = true){
             
     }
     else{
-            $('#registraClientes').show();
-            $('#listaCliente').hide();
+            $('#registraPagos').show();
+            $('#listaPagos').hide();
     }
 }
 
@@ -132,7 +110,7 @@ function insertaCliente(){
 
         let ajax = new charpierre_ajax();
 
-        ajax.realizaPeticion("./modulos/clientes/select_function.php", formData,function(datos){
+        ajax.realizaPeticion("./modulos/pagos/select_function.php", formData,function(datos){
 
             if(datos['error']==false){
                 arrResultado = datos['resultado'];
@@ -161,7 +139,7 @@ function muestraCliente(data){
     formData.append('funcion','verCliente');
     formData.append('idCliente',idCliente);
 
-    ajax.realizaPeticion("./modulos/clientes/select_function.php", formData,function(datos){
+    ajax.realizaPeticion("./modulos/pagos/select_function.php", formData,function(datos){
 
         if(datos['error']==false){
             arrResultado = datos['resultado'];
@@ -182,25 +160,6 @@ function muestraCliente(data){
             $('#cp').val(arrResultado[0]['cp']);
             $('#telefono').val(arrResultado[0]['telefono']);
             $('#email').val(arrResultado[0]['mail']);
-        }
-        else{
-            
-        }
-    });
-}
-
-function eliminaCliente(data){
-    let idCliente = $(data).data("id");
-    let ajax = new charpierre_ajax();
-    let formData = new FormData();
-
-    formData.append('funcion','eliminaCliente');
-    formData.append('idCliente',idCliente);
-
-    ajax.realizaPeticion("./modulos/clientes/select_function.php", formData,function(datos){
-
-        if(datos['error']==false){
-            cargaTabla();
         }
         else{
             

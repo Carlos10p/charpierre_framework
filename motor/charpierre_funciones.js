@@ -43,7 +43,7 @@ class funciones{
                 infoPostFix:    "",
                 loadingRecords: "Cargando Datos...",
                 zeroRecords:    "Base de datos vacia",
-                emptyTable:     "Ningun dato disponible en esta tabla",
+                emptyTable:     "Ningún dato disponible en esta tabla",
                 paginate: {
                     first:      "Primero",
                     previous:   "Anterior",

@@ -1,7 +1,7 @@
 <?php 
     require_once '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'motor'.DIRECTORY_SEPARATOR.'conexion.php';
 
-    class clientes_funciones{
+    class cobranza_funciones{
         function listaCobranzas(){
             try{
                 $datos = [
@@ -115,6 +115,25 @@
                                                                 ".$conexion->procesaNULL($cliente,FALSE).",
                                                                 ".$conexion->procesaNULL($vendedor,TRUE)."
                                                             );";
+
+                $conexion->realizaConsulta($sql);
+
+                return $datos;
+            }
+            catch(Exception $e){
+                echo 'Ocurrio un error'.$e->getMessage();
+            }
+        }
+
+        function eliminaCobranza($id){
+            try{
+                $datos = [
+                'error'=>false
+                ];
+                $conexion = new conexion();
+
+
+                $sql="CALL sp_cobranza_eliminaCobranza(".$conexion->procesaNULL($id,FALSE).");";
 
                 $conexion->realizaConsulta($sql);
 

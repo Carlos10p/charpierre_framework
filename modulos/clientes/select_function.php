@@ -12,30 +12,33 @@ if(isset($_POST['funcion']) && !empty($_POST['funcion'])) {
 
     switch($funcion) {
         //FUNCIÓN 
-        case 'muestraListadoClientes': 
-            $resultado = $funciones -> listaClientes();
-            break;
+            case 'muestraListadoClientes': 
+                $resultado = $funciones -> listaClientes();
+                break;
             case 'verCliente': 
                 $resultado = $funciones -> muestraCliente($_POST['idCliente']);
                 break;
-        case 'registraCliente': 
-            $resultado = $funciones -> registraCliente(
-                                                        $_POST['nombre'],
-                                                        $_POST['apPaterno'],
-                                                        $_POST['apMaterno'],
-                                                        $_POST['rfc'],
-                                                        $_POST['curp'],
-                                                        $_POST['calle'],
-                                                        $_POST['colonia'],
-                                                        $_POST['no_ext'],
-                                                        $_POST['no_int'],
-                                                        $_POST['ciudad'],
-                                                        $_POST['estado'],
-                                                        $_POST['cp'],
-                                                        $_POST['telefono'],
-                                                        $_POST['email']
-                                                    );
-            break;
+            case 'eliminaCliente': 
+                $resultado = $funciones -> eliminaCliente($_POST['idCliente']);
+                break;
+            case 'registraCliente': 
+                $resultado = $funciones -> registraCliente(
+                                                            $_POST['nombre'],
+                                                            $_POST['apPaterno'],
+                                                            $_POST['apMaterno'],
+                                                            $_POST['rfc'],
+                                                            $_POST['curp'],
+                                                            $_POST['calle'],
+                                                            $_POST['colonia'],
+                                                            $_POST['no_ext'],
+                                                            $_POST['no_int'],
+                                                            $_POST['ciudad'],
+                                                            $_POST['estado'],
+                                                            $_POST['cp'],
+                                                            $_POST['telefono'],
+                                                            $_POST['email']
+                                                        );
+                break;
     }
     
     echo json_encode($resultado);

@@ -1,8 +1,8 @@
 <?php 
     require_once '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'motor'.DIRECTORY_SEPARATOR.'conexion.php';
 
-    class clientes_funciones{
-        function listaClientes(){
+    class pagos_funciones{
+        function listaPagos(){
             try{
                 $datos = [
                     'error'=>false,
@@ -11,7 +11,7 @@
                 $conexion = new conexion();
 
 
-                $sql=" CALL sp_clientes_muestraTabla();";
+                $sql=" CALL sp_pagos_listaPagos();";
 
                 $resultado= $conexion->realizaConsulta($sql);
 
@@ -21,12 +21,11 @@
                         while($row = $conexion->bd_dameRegistro($resultado)){
                             
                             $resultset = [
-                                            "id_cliente" => $row['id_cliente'],
-                                            "nombre" => $row['nombre'],
-                                            "correo" => $row['correo'],
-                                            "telefono" => $row['telefono'],
-                                            "estatus" => $row['estatus'],
-                                            "ubicacion" => $row['ubicacion']
+                                            "id_pago" => $row['id_pago'],
+                                            "id_cobranza" => $row['id_cobranza'],
+                                            "cantidad" => $row['cantidad'],
+                                            "tipoPago" => $row['tipoPago'],
+                                            "fechaPago" => $row['fechaPago']
                                         ];
                             array_push($datos['resultado'],$resultset);
                         }
@@ -49,7 +48,7 @@
                 $conexion = new conexion();
 
 
-                $sql=" CALL sp_clientes_muestraCliente(".$conexion->procesaNULL($idCliente,FALSE).");";
+                $sql=" CALL sp_pagos_muestraCliente(".$conexion->procesaNULL($idCliente,FALSE).");";
 
                 $resultado= $conexion->realizaConsulta($sql);
 
@@ -95,7 +94,7 @@
                 echo 'Ocurrio un error'.$e->getMessage();
             }
         }
-      
+
         function registraCliente(
                                     $nombre,
                                     $apPaterno,
@@ -144,24 +143,5 @@
                 echo 'Ocurrio un error'.$e->getMessage();
             }
         }
-
-        function eliminaCliente($id){
-            try{
-                $datos = [
-                'error'=>false
-                ];
-                $conexion = new conexion();
-
-
-                $sql="CALL sp_clientes_eliminaCliente(".$conexion->procesaNULL($id,FALSE).");";
-
-                $conexion->realizaConsulta($sql);
-
-                return $datos;
-            }
-            catch(Exception $e){
-                echo 'Ocurrio un error'.$e->getMessage();
-            }
-        }
-}
+    }
 ?>

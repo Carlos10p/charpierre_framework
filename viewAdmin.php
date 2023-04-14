@@ -8,6 +8,7 @@
 	require_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'clientes'.DIRECTORY_SEPARATOR.'clientes.php';
 	require_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'cobranza'.DIRECTORY_SEPARATOR.'cobranza.php';
 	require_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'perfil'.DIRECTORY_SEPARATOR.'perfil.php';
+	require_once '.'.DIRECTORY_SEPARATOR.'modulos'.DIRECTORY_SEPARATOR.'pagos'.DIRECTORY_SEPARATOR.'pagos.php';
 
 
 	class viewAdmin{
@@ -86,6 +87,9 @@
 										break;
 									case 'cobranza':
 										$modulo = new viewCobranza();
+										break;
+									case 'pagos':
+										$modulo = new viewPagos();
 										break;
 									default:
 										$modulo = new viewHome();

@@ -43,14 +43,14 @@ function cargaTabla(){
                                 '<td>'+arr['producto']+'</td>'+
                                 '<td>'+arr['costo']+'</td>'+
                                 '<td>'+arr['vendedor']+'</td>'+
-                                '<td>'+arr['fechaPromesaPago']+'</td>'+
-                                aut+
+                                '<td>'+arr['fechaPromesaPago']+'</td>'
+                                +aut+
                                 '<td>'+
                                     '<a href="'+arr['No_factura']+'" type="button" class="btn btn-secondary" target="_blank" ><i class="feather icon-file-text"></i></a>'+
                                     '<a href="'+arr['contrato']+'" type="button" class="btn btn-primary" target="_blank" ><i class="feather icon-file-text"></i></a>'+
                                     '<a href="'+arr['ordenProducción']+'" type="button" class="btn btn-warning" target="_blank" ><i class="feather icon-paperclip"></i></a>'+
                                     '<button type="button" class="btn btn-success verCobranza" id="verCobranza" data-id="'+arr['id_cobranza']+'"><i class="feather icon-eye"></i></button>'+
-                                    '<button type="button" class="btn btn-danger" data-id="'+arr['id_cobranza']+'"><i class="feather icon-trash-2"></i></button>'+
+                                    '<button type="button" class="btn btn-danger eliminaCobranza" data-id="'+arr['id_cobranza']+'"><i class="feather icon-trash-2"></i></button>'+
                                 '</td>'+
                             '</tr>';
                         html = html + texto;
@@ -66,6 +66,9 @@ function cargaTabla(){
             
             $('.verCobranza').on('click',function () {
                 muestraCobranza(this);
+            });
+            $('.eliminaCobranza').on('click',function () {
+                eliminaCobranza(this);
             });
         }
         else{
@@ -118,7 +121,7 @@ function insertaCobranza(){
         let ajax = new charpierre_ajax();
 
         ajax.realizaPeticion("./modulos/cobranza/select_function.php", formData,function(datos){
-
+            
             if(datos['error']==false){
                 arrResultado = datos['resultado'];
 
@@ -162,6 +165,27 @@ function muestraCobranza(data){
             $('#cliente').val(arrResultado[0]['cliente']);
             $('#googler').val(arrResultado[0]['vendedor']);
     
+        }
+        else{
+            
+        }
+    });
+}
+
+function eliminaCobranza(data){
+    let idCobranza = $(data).data("id");
+    let ajax = new charpierre_ajax();
+    let formData = new FormData();
+
+    formData.append('funcion','eliminaCobranza');
+    formData.append('idCobranza',idCobranza);
+
+    
+
+    ajax.realizaPeticion("./modulos/cobranza/select_function.php", formData,function(datos){
+
+        if(datos['error']==false){
+            cargaTabla();
         }
         else{
             
